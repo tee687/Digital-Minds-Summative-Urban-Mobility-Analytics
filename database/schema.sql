@@ -19,3 +19,10 @@ CREATE TABLE rate_codes(
     rate_code_id INTEGER PRIMARY KEY,
     rate_description TEXT NOT NULL
 );
+
+CREATE TABLE excluded_records(
+    record_id INTEGER PRIMARY KEY,
+    reason TEXT NOT NULL,
+    raw_data TEXT,
+    logged_at TEXT NOT NULL
+);
