@@ -14,3 +14,8 @@ CREATE TABLE vendors (
     vendor_id INTEGER PRIMARY KEY,
     vendor_name TEXT NOT NULL
 );
+
+CREATE TABLE rate_codes(
+    rate_code_id INTEGER PRIMARY KEY,
+    rate_description TEXT NOT NULL
+);
