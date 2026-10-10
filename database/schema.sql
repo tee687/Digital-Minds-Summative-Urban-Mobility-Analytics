@@ -4,3 +4,8 @@ CREATE TABLE zones (
     Zone TEXT NOT NULL,
     service_zone TEXT  
 );
+
+CREATE TABLE payment_types (
+    payment_type_id INTEGER PRIMARY KEY,
+    payment_description TEXT NOT NULL
+);
