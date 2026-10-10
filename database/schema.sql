@@ -46,3 +46,7 @@ CREATE TABLE trips(
     vendor_id INTEGER NOT NULL REFERENCES vendors(vendor_id),
     rate_code_id INTEGER NOT NULL REFERENCES rate_codes(rate_code_id)
 );
+
+ CREATE INDEX idx_trips_pickup_datetime ON trips(pickup_datetime);
+CREATE INDEX idx_trips_pickup_location_id ON trips(pickup_location_id);
+CREATE INDEX idx_trips_dropoff_location_id ON trips(dropoff_location_id);
