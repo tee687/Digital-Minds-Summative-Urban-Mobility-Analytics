@@ -20,10 +20,12 @@ def load_lookups(conn):
         (1, "Credit card"), (2, "Cash"), (3, "No charge"),
         (4, "Dispute"), (5, "Unknown"), (6, "Voided trip")])
     conn.executemany("INSERT INTO vendors VALUES(?, ?)",[
-        (1, "Create Mobile Technologies"), (2, "Verifone Inc.")])
+        (1, "Creative Mobile Technologies"), (2, "Verifone Inc."), 
+        (4, "Curb Mobility, LLC")])
     conn.executemany("INSERT INTO rate_codes VALUES (?, ?)", [
         (1, "Standard rate"), (2, "JFK"), (3, "Newark"),
-        (4, "Nassau or Westchester"), (5, "Negotiated fare"), (6, "Group ride")])
+        (4, "Nassau or Westchester"), (5, "Negotiated fare"), (6, "Group ride"), 
+        (99, "Unknown")])
     conn.commit()   
     
     
@@ -46,11 +48,13 @@ KEEP_COLUMNS = [
 ]
 def load_trips(conn, csv_path, max_rows=None):
     total = 0
-    for chunk in pd.read_csv(csv_path, chunksize=100000, nrows=max_rows):
+    for chunk in pd.read_csv(csv_path, chunksize=100000):
         chunk = chunk.rename(columns=COLUMN_MAP)
         chunk = chunk[KEEP_COLUMNS]
         chunk.to_sql("trips", conn, if_exists="append", index=False)
         total = total + len(chunk)
-        conn.commit()
-        return total
+        if max_rows is not None and total >= max_rows:
+            break
+    conn.commit()
+    return total
     
