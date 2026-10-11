@@ -15,3 +15,14 @@ def load_zones(conn):
     df = df.dropna(subset=["Borough", "Zone"])
     df.to_sql("zones", conn, if_exists="append", index=False)
     
+def load_lookups(conn):
+    conn.executemany("INSERT INTO payment_types VALUES (?, ?)", [
+        (1, "Credit card"), (2, "Cash"), (3, "No charge"),
+        (4, "Dispute"), (5, "Unknown"), (6, "Voided trip")])
+    conn.executemany("INSERT INTO vendors VALUES(?, ?)",[
+        (1, "Create Mobile Technologies"), (2, "Verifone Inc.")])
+    conn.executemany("INSERT INTO rate_codes VALUES (?, ?)", [
+        (1, "Standard rate"), (2, "JFK"), (3, "Newark"),
+        (4, "Nassau or Westchester"), (5, "Negotiated fare"), (6, "Group ride")])
+    conn.commit()
+        
