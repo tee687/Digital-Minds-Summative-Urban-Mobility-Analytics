@@ -34,7 +34,7 @@ COLUMN_MAP = {
     "DOLocationID": "dropoff_location_id",
     "VendorID": "vendor_id",
     "RatecodeID": "rate_code_id",
-    "payement_type": "payment_type_id",
+    "payment_type": "payment_type_id",
 }   
 
 KEEP_COLUMNS = [
@@ -44,3 +44,13 @@ KEEP_COLUMNS = [
     "improvement_surcharge", "congestion_surcharge", "total_amount",
     "vendor_id", "rate_code_id",
 ]
+def load_trips(conn, csv_path, max_rows=None):
+    total = 0
+    for chunk in pd.read_csv(csv_path, chunksize=100000, nrows=max_rows):
+        chunk = chunk.rename(columns=COLUMN_MAP)
+        chunk = chunk[KEEP_COLUMNS]
+        chunk.to_sql("trips", conn, if_exists="append", index=False)
+        total = total + len(chunk)
+        conn.commit()
+        return total
+    
