@@ -9,3 +9,9 @@ def create_database():
     with open(SCHEMA_PATH) as f:
          conn.executescript(f.read())
     return conn
+
+def load_zones(conn):
+    df = pd.read_csv("data/taxi_zone_lookup .csv", keep_default_na=False)
+    df = df.dropna(subset=["Borough", "Zone"])
+    df.to_sql("zones", conn, if_exists="append", index=False)
+    
