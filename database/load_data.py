@@ -24,5 +24,23 @@ def load_lookups(conn):
     conn.executemany("INSERT INTO rate_codes VALUES (?, ?)", [
         (1, "Standard rate"), (2, "JFK"), (3, "Newark"),
         (4, "Nassau or Westchester"), (5, "Negotiated fare"), (6, "Group ride")])
-    conn.commit()
-        
+    conn.commit()   
+    
+    
+COLUMN_MAP = {
+    "tpep_pickup_datetime": "pickup_datetime",
+    "tpep_dropoff_datetime": "dropoff_datetime",
+    "PULocationID": "pickup_location_id",
+    "DOLocationID": "dropoff_location_id",
+    "VendorID": "vendor_id",
+    "RatecodeID": "rate_code_id",
+    "payement_type": "payment_type_id",
+}   
+
+KEEP_COLUMNS = [
+    "pickup_datetime", "dropoff_datetime", "passenger_count", "trip_distance",
+    "pickup_location_id", "dropoff_location_id", "payment_type_id",
+    "fare_amount", "extra", "mta_tax", "tip_amount", "tolls_amount",
+    "improvement_surcharge", "congestion_surcharge", "total_amount",
+    "vendor_id", "rate_code_id",
+]
