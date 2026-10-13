@@ -56,5 +56,23 @@ def load_trips(conn, csv_path, max_rows=None):
         if max_rows is not None and total >= max_rows:
             break
     conn.commit()
-    return total
+    return total 
+
+
+import os
+TRIPS_CSV= "c:/Users/user/downloads/yellow_tripdata_2019-01.csv"
+
+def main():
+    if os.path.exists(DB_PATH):
+        os.remove(DB_PATH)
+    conn = create_database()
+    load_zones(conn)
+    load_lookups(conn)
+    total = load_trips(conn, TRIPS_CSV)  
+    print("Trips loaded:", total)
+    conn.close()
+    
+    
+if __name__== "__main__":
+    main()   
     
