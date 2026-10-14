@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+    <html lang="en">
+ <head>
+    <meta charset="UTF-8" />
+    <title>NYC Mobility Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+ </head>
+<body>
+<header>
+    <h1>NYC Mobility Dashboard</h1>
+</header>
+ <main class="container">
+
+<section class="kpi-row">
+   <div class="card"><h4>TOTAL TRIPS</h4><h2 id="total-trips">0</h2></div>
+      <div class="card"><h4>AVERAGE FARE</h4><h2 id="avg-fare">$0.00</h2></div>
+      <div class="card"><h4>AVERAGE DISTANCE</h4><h2 id="avg-distance">0.00 mi</h2></div>
+      <div class="card"><h4>AVERAGE DURATION</h4><h2 id="avg-duration">0.00 min</h2></div>
+</section>
+
+<section class="card filters">
+  <label>Borough:
+    <select id="borough-filter">
+        <option value="ALL">All</option>
+        <option value="Manhattan">Manhatan</option>
+        <option value="Queens">Queens</option>
+        <option value="Brooklyn">Brooklyn</option>
+        <option value="Bronx"> Bronx</option>
+        
+        </select>
+    </label>
+    <label>Max Miles (<span id="dist-label">20</span>mi):
+    <input type="range" id="max-distance" min="1" max="20" value="20" />
+</label>
+
+<label>Sort:
+    <select id="sort-select">
+    <option value ="fare_desc">Fare (High to Low)</option>
+    <option value="fare_asc">Fare (Low to High)</option>
+    <option value="dist_des">Distance (Longest)</option>
+    </select>
+
+</label>
+<button id="reset-btn">Reset</button>
+</section>
+
+
+
+<section class="visuals-row">
+    <div class=" card chart-box">
+        <h3>Demand by Hour</h3>
+            <canvas id ="hourlyChart"></canvas>
+    
+        </div>
+        <div class="card map-box">
+            <h3>Taxi Zones</h3>
+            <div id="map"></div>
+        </div>
+    </section>
+
+
+    <section class="card">
+    <h3> trips</h3>
+        <table>
+       <thead> 
+        <tr><th>Pickup</th><th>Dropoff</th><th>Distance</th><th>Duration</th><th>Fare</th></tr>
+</thead>
+        <tbody id ="trips-table-body"></tbody>
+</table>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
+
