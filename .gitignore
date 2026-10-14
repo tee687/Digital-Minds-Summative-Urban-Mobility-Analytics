@@ -1,7 +1,14 @@
 venv/
 __pycache__/
 *.pyc
-data/raw/
-data/processed/*.csv
+# /data/taxi_zone_lookup.csv
+# /data/taxi_zone_lookup .csv
+# /data/taxi_zones.zip
+# /data/yellow_tripdata_2019-01.csv
+
+data/
+database/*.db
+backend/logs/
+backend/processed/
 *.db
 .DS_Store

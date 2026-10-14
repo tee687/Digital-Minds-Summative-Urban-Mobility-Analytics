@@ -44,9 +44,12 @@ CREATE TABLE trips(
     congestion_surcharge REAL,
     total_amount REAL NOT NULL,
     vendor_id INTEGER NOT NULL REFERENCES vendors(vendor_id),
-    rate_code_id INTEGER NOT NULL REFERENCES rate_codes(rate_code_id)
+    rate_code_id INTEGER NOT NULL REFERENCES rate_codes(rate_code_id),
+    trip_duration_min REAL,
+    avg_speed_mph REAL,
+    fare_per_mile REAL
 );
 
- CREATE INDEX idx_trips_pickup_datetime ON trips(pickup_datetime);
+CREATE INDEX idx_trips_pickup_datetime ON trips(pickup_datetime);
 CREATE INDEX idx_trips_pickup_location_id ON trips(pickup_location_id);
 CREATE INDEX idx_trips_dropoff_location_id ON trips(dropoff_location_id);
