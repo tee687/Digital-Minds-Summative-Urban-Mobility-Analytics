@@ -1,7 +1,9 @@
 import sqlite3
 import pandas as pd
+import os
+
 DB_PATH ="taxi.db"
-SCHEMA_PATH ="database/schema.sql" 
+SCHEMA_PATH = "../database/schema.sql" 
 
 def create_database():
     conn = sqlite3.connect(DB_PATH)
@@ -11,7 +13,7 @@ def create_database():
     return conn
 
 def load_zones(conn):
-    df = pd.read_csv("data/taxi_zone_lookup .csv", keep_default_na=False)
+    df = pd.read_csv("../data/taxi_zone_lookup.csv", keep_default_na=False)
     df = df.dropna(subset=["Borough", "Zone"])
     df.to_sql("zones", conn, if_exists="append", index=False)
     
@@ -43,9 +45,9 @@ KEEP_COLUMNS = [
     "pickup_datetime", "dropoff_datetime", "passenger_count", "trip_distance",
     "pickup_location_id", "dropoff_location_id", "payment_type_id",
     "fare_amount", "extra", "mta_tax", "tip_amount", "tolls_amount",
-    "improvement_surcharge", "congestion_surcharge", "total_amount",
+    "improvement_surcharge", "total_amount",
     "vendor_id", "rate_code_id",
-]
+    "trip_duration_min", "avg_speed_mph", "fare_per_mile"]
 def load_trips(conn, csv_path, max_rows=None):
     total = 0
     for chunk in pd.read_csv(csv_path, chunksize=100000):
@@ -59,8 +61,7 @@ def load_trips(conn, csv_path, max_rows=None):
     return total 
 
 
-import os
-TRIPS_CSV= "c:/Users/user/downloads/yellow_tripdata_2019-01.csv"
+TRIPS_CSV= "../backend/processed/cleaned_trips.csv"
 
 def main():
     if os.path.exists(DB_PATH):
