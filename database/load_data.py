@@ -13,7 +13,7 @@ def create_database():
     return conn
 
 def load_zones(conn):
-    df = pd.read_csv("../data/taxi_zone_lookup.csv", keep_default_na=False)
+    df = pd.read_csv("data/taxi_zone_lookup .csv", keep_default_na=False)
     df = df.dropna(subset=["Borough", "Zone"])
     df.to_sql("zones", conn, if_exists="append", index=False)
     
@@ -47,13 +47,14 @@ KEEP_COLUMNS = [
     "fare_amount", "extra", "mta_tax", "tip_amount", "tolls_amount",
     "improvement_surcharge", "total_amount",
     "vendor_id", "rate_code_id",
-    "trip_duration_min", "avg_speed_mph", "fare_per_mile"]
+    "trip_duration_min", "avg_speed_mph", "fare_per_mile",
+]
 def load_trips(conn, csv_path, max_rows=None):
     total = 0
     for chunk in pd.read_csv(csv_path, chunksize=100000):
         chunk = chunk.rename(columns=COLUMN_MAP)
         chunk = chunk[KEEP_COLUMNS]
-        chunk.to_sql("trips", conn, if_exists="append", index=False)
+        chunk.to_sql("trips", conn, if_exists="append", index=False, method="multi", chunksize=500)
         total = total + len(chunk)
         if max_rows is not None and total >= max_rows:
             break
@@ -61,7 +62,8 @@ def load_trips(conn, csv_path, max_rows=None):
     return total 
 
 
-TRIPS_CSV= "../backend/processed/cleaned_trips.csv"
+import os
+TRIPS_CSV= "data/cleaned_trips.csv"
 
 def main():
     if os.path.exists(DB_PATH):
