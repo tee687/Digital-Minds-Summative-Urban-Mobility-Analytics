@@ -1,3 +1,4 @@
+ Updated upstream
 venv/
 __pycache__/
 *.pyc
@@ -12,3 +13,9 @@ backend/logs/
 backend/processed/
 *.db
 .DS_Store
+
+data/cleaned_trips.csv
+data/taxi_zone_lookup.csv
+taxi.db
+*.db-journal
+Stashed changes
