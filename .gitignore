@@ -1,4 +1,4 @@
- Updated upstream
+ 
 venv/
 __pycache__/
 *.pyc
@@ -18,4 +18,5 @@ data/cleaned_trips.csv
 data/taxi_zone_lookup.csv
 taxi.db
 *.db-journal
-Stashed changes
+*.parquet
+*.csv
