@@ -4,6 +4,7 @@ Digital Minds - Urban Mobility Data Explorer
 Full-stack analysis of New York City Yellow Taxi trips from January 2019,
 built on the official NYC Taxi and Limousine Commission dataset.
 
+**Team Participation Sheet** :  https://docs.google.com/spreadsheets/d/1SGd--n8lrixSFb_JCQyeSs0yTBksFDZiIn0_bwOMDgA/edit?usp=sharing
 
 Overview
 --------
@@ -29,6 +30,7 @@ frontend/               Dashboard user interface
 requirements.txt        Python dependencies
 
 **SYSTEM ARCHITECTURE**
+----------------------
 
 <img width="1025" height="687" alt="image" src="https://github.com/user-attachments/assets/9d50fd4d-4c04-4702-abac-8641000eec4d" />
 
