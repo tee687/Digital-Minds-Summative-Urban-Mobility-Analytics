@@ -1,8 +1,17 @@
 Digital Minds - Urban Mobility Data Explorer
 ============================================
+An enterprise-level full-stack application designed to process, analyze, and visualize real-world urban mobility datasets from the New York City Taxi & Limousine Commission (TLC).
 
 **Team Participation Sheet** :  https://docs.google.com/spreadsheets/d/1SGd--n8lrixSFb_JCQyeSs0yTBksFDZiIn0_bwOMDgA/edit?usp=sharing
 **Video Walkthrough link**   :  https://youtu.be/IOzEzABfxhc
+
+## Team Members & Responsibilities
+
+| Name | Role | Core Responsibility |
+| :--- | :--- | :--- |
+| **Tendai Lynn Mtakiwa** | Team Lead & Frontend Developer | Frontend dashboard UI (HTML/CSS/JS), interactive maps (Leaflet), KPI visual analytics, client-side DSA QuickSort. |
+| **Tasnim Maulidi** | Database Architect & Engineer | Relational database schema design (SQLite), table indexing, and database loading pipeline. |
+| **Chidera Asiegbunam** | Data Pipeline & Backend Developer | Data extraction, cleaning, outlier handling, feature engineering, and Flask REST API backend. |
 
 Overview
 --------
@@ -13,19 +22,44 @@ SQLite database. A frontend dashboard allows users to explore urban mobility
 patterns such as average fare by hour, trip distance by zone, and pickup
 hotspots across the city.
 
+## Repository Structure
 
-Repository Structure
---------------------
-
-backend/                Backend service and API
-codevibe-reports/       Authorship reports for team members
-data/                   Reference data and cleaned trip data
-database/               Schema definition and ETL loader
-docs/                   Diagrams and documentation
-etl/                    Supporting ETL scripts
-frontend/               Dashboard user interface
-
-requirements.txt        Python dependencies
+```text
+Digital-Minds-_Urban-Mobility-Data-Explorer/
+│
+├── backend/                  # Flask REST API and core services
+│   ├── app.py                # Flask application entry point
+│   ├── algorithm.py          # Custom QuickSort implementation (DSA)
+│   ├── db.py                 # SQLite connection handlers
+│   ├── pipeline.py           # Data ingestion & query pipeline
+│   └── logs/                 # Data cleaning and audit logs
+│
+├── database/                 # Database scripts & schema
+│   ├── schema.sql            # Normalized DDL schema definitions
+│   └── load_data.py          # Batch database ETL loader
+│
+├── data/                     # Dimensional lookup data
+│   ├── taxi_zone_lookup.csv  # Taxi zone to borough lookup
+│   ├── raw/                  # Raw parquet and shapefile data (git-ignored)
+│   └── processed/            # Cleaned data checkpoints
+│
+├── docs/                     # Diagrams and technical documentation
+│   └── erd.png               # Entity-Relationship Diagram (ERD)
+│
+├── etl/                      # ETL transformation scripts
+│   ├── clean_and_enrich.py   # Outlier cleaning and feature engineering
+│   └── init_db.py            # Database initializer
+│
+├── frontend/                 # Interactive web dashboard
+│   ├── index.html            # Dashboard semantic layout & controls
+│   ├── css/
+│   │   └── style.css         # Custom aesthetic brown/cream theme & responsive layout
+│   ├── js/
+│   │   └── main.js           # Filtering logic, Chart.js visuals, Leaflet map, QuickSort
+│   └── taxi_zones.geojson    # NYC taxi zone boundary spatial polygons
+│
+├── codevibe-reports/         # Authorship & contribution verification logs
+├── requirements.txt          # Python dependencies
 
 **SYSTEM ARCHITECTURE**
 ----------------------
@@ -42,23 +76,27 @@ database/load_data.py. It contains six tables:
 
 <img width="840" height="512" alt="image" src="https://github.com/user-attachments/assets/2871fafd-1027-4317-96b0-de54c6d787e0" />
 
+## Algorithmic Implementation (DSA Requirement)
 
-Fact table
-    trips               Approximately 7.57 million rows
+To satisfy the DSA requirement without relying on native sorting libraries (e.g., `sort_values` or `Array.prototype.sort()`), the project includes a manual **QuickSort Algorithm** implemented in both `backend/algorithm.py` and `frontend/js/main.js
 
-Dimension tables
-    zones               LocationID to Borough, Zone, service_zone
-    vendors             vendor_id to vendor_name
-    payment_types       payment_type_id to description
-    rate_codes          rate_code_id to description
+- **Approach:** Divide-and-conquer partitioning around a middle pivot value.
+- **Sorting Keys:** Dynamically sorts trips by `fare_amount` or `trip_distance` in ascending or descending order
+- **Time Complexity:**
+  - **Best / Average Case:** $\mathcal{O}(n \log n)
+  - **Worst Case:** $\mathcal{O}(n^2)$
+- **Space Complexity:** $\mathcal{O}(\log n)$ auxiliary recursion stack space.
 
-Audit table
-    excluded_records    Records of rows removed during cleaning
+---
 
-All dimension tables are linked to the trips table through foreign keys,
-ensuring referential integrity across the schema.
+## Setup & Running Instructions
 
+Follow these step-by-step instructions to run the application locally from scratch:
 
+### Prerequisites
+- Python 3.10+ installed
+- Modern Web Browser (Chrome, Edge, or Firefox)
+- VS Code (with the **Live Server** extension installed
 Indexes
 -------
 
@@ -78,16 +116,6 @@ Three derived columns are computed during the ETL pipeline:
     trip_duration_min       Trip length in minutes
     avg_speed_mph           Trip distance divided by duration in hours
     fare_per_mile           Fare amount divided by trip distance
-
-
-Running the Project
--------------------
-
-    python database/load_data.py
-
-This creates the database file, loads all zone and lookup tables, and
-inserts every trip record in chunks of 100,000 rows.
-
 
 Data Source
 -----------
