@@ -3,6 +3,7 @@ Digital Minds - Urban Mobility Data Explorer
 An enterprise-level full-stack application designed to process, analyze, and visualize real-world urban mobility datasets from the New York City Taxi & Limousine Commission (TLC).
 
 **Team Participation Sheet** :  https://docs.google.com/spreadsheets/d/1SGd--n8lrixSFb_JCQyeSs0yTBksFDZiIn0_bwOMDgA/edit?usp=sharing
+
 **Video Walkthrough link**   :  https://youtu.be/IOzEzABfxhc
 
 ## Team Members & Responsibilities
