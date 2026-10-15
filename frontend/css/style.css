@@ -111,11 +111,13 @@
   min-height: 320px;
 }
 
-#map {
+
+ #map {
   height: 350px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid #ede3d7;
+  display: block;
 }
      
 

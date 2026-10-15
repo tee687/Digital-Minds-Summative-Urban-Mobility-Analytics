@@ -87,30 +87,65 @@ function filterData() {
 
 
    updateUI(filtered);
-
-// MAP
-   function loadMap() {
-  const mapEl = document.getElementById("map");
-  if (!mapEl) return;
-
-  const map = L.map("map").setView([40.7128, -74.006], 10);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "© OpenStreetMap contributors"
-  }).addTo(map);
 }
-fetch ("taxi_zones.geojson")
-.then((res) => res.json())
-.then((geo) => {
-    L.geoJSON(geo, {
-        style: { color: "#8c5836", weight: 1, fillOpacity: 0.2 }
-    }).addTo(map);
-})
-.catch(() => console.log("taxi_zones.geojson not found locally"));
-   }
+// MAP
+ // MAP
+let map = null;
 
-   // Connecting the UI controls
-// Connecting the UI controls
+function loadMap() {
+  const mapContainer = document.getElementById("map");
+  if (!mapContainer) return;
+
+  // Destroy previous map instance if it exists
+  if (map) {
+    map.remove();
+    map = null;
+  }
+
+  // 1. Initialize map on the container ID
+  map = L.map("map").setView([40.7128, -74.006], 10);
+
+  // 2. Add OpenStreetMap tile layer directly to map
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
+
+  // Invalidate size to ensure tiles draw inside container
+  setTimeout(() => {
+    if (map) map.invalidateSize();
+  }, 250);
+
+  // 3. Load GeoJSON zones
+  fetch("taxi_zones.geojson")
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+      return res.json();
+    })
+    .then((geoData) => {
+      const geoLayer = L.geoJSON(geoData, {
+        style: {
+          color: "#8c5836",
+          weight: 1.5,
+          fillColor: "#dccfc2",
+          fillOpacity: 0.35
+        },
+        onEachFeature: (feature, layer) => {
+          if (feature.properties) {
+            const zone = feature.properties.zone || feature.properties.Zone || "Zone";
+            const boro = feature.properties.borough || feature.properties.Borough || "";
+            layer.bindPopup(`<strong>${zone}</strong><br>${boro}`);
+          }
+        }
+      });
+
+      geoLayer.addTo(map);
+      map.fitBounds(geoLayer.getBounds());
+    })
+    .catch((err) => console.log("taxi_zones.geojson issue:", err));
+}
+
+// UI Controls & Listeners
 const boroughFilter = document.getElementById("borough-filter");
 const sortSelect = document.getElementById("sort-select");
 const distInput = document.getElementById("max-distance");
@@ -132,16 +167,11 @@ if (resetBtn) {
     if (boroughFilter) boroughFilter.value = "ALL";
     if (distInput) distInput.value = 20;
     if (distLabel) distLabel.textContent = "20";
+    if (sortSelect) sortSelect.value = "fare_desc";
     filterData();
   });
 }
-  
-  
 
 // Run immediately
 filterData();
 loadMap();
-
-
-    
-
