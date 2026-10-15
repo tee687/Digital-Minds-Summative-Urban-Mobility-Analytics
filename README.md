@@ -28,6 +28,11 @@ frontend/               Dashboard user interface
 
 requirements.txt        Python dependencies
 
+**SYSTEM ARCHITECTURE**
+
+<img width="1025" height="687" alt="image" src="https://github.com/user-attachments/assets/9d50fd4d-4c04-4702-abac-8641000eec4d" />
+
+
 
 Database
 --------
