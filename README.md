@@ -39,7 +39,9 @@ Database
 
 The database is defined in database/schema.sql and loaded by
 database/load_data.py. It contains six tables:
-<img width="1366" height="718" alt="image" src="https://github.com/user-attachments/assets/3d89bdee-c666-4acf-aa35-fca0f2d3391d" />
+
+<img width="840" height="512" alt="image" src="https://github.com/user-attachments/assets/2871fafd-1027-4317-96b0-de54c6d787e0" />
+
 
 Fact table
     trips               Approximately 7.57 million rows
