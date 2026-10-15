@@ -25,7 +25,6 @@ hotspots across the city.
 
 ## Repository Structure
 
-```text
 Digital-Minds-_Urban-Mobility-Data-Explorer/
 │
 ├── backend/                  # Flask REST API and core services
@@ -66,7 +65,6 @@ Digital-Minds-_Urban-Mobility-Data-Explorer/
 ----------------------
 
 <img width="1025" height="687" alt="image" src="https://github.com/user-attachments/assets/9d50fd4d-4c04-4702-abac-8641000eec4d" />
-
 
 
 Database
