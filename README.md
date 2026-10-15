@@ -27,7 +27,6 @@ hotspots across the city.
 
 backend/ Backend service and API codevibe-reports/ Authorship reports for team members data/ Reference data and cleaned trip data database/ Schema definition and ETL loader docs/ Diagrams and documentation etl/ Supporting ETL scripts frontend/ Dashboard user interface
 
-requirements.txt Python dependencies
 **SYSTEM ARCHITECTURE**
 ----------------------
 
