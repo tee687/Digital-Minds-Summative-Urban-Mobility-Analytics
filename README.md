@@ -24,43 +24,10 @@ patterns such as average fare by hour, trip distance by zone, and pickup
 hotspots across the city.
 
 ## Repository StructureDigital-Minds-_Urban-Mobility-Data-Explorer/
-│
-├── backend/                  # Flask REST API and core services
-│   ├── app.py                # Flask application entry point
-│   ├── algorithm.py          # Custom QuickSort implementation (DSA)
-│   ├── db.py                 # SQLite connection management
-│   ├── pipeline.py           # Ingestion and query pipeline
-│   └── logs/                 # Cleaning audit logs
-│
-├── database/                 # Relational schema and ETL scripts
-│   ├── schema.sql            # Table DDL definitions
-│   └── load_data.py          # Batch data loading script
-│
-├── data/                     # Reference lookup data
-│   ├── taxi_zone_lookup.csv  # Zone-to-borough mapping
-│   ├── raw/                  # Parquet and shapefiles (git-ignored)
-│   └── processed/            # Cleaned data files
-│
-├── docs/                     # Documentation and architecture diagrams
-│   └── erd.png               # Entity-Relationship Diagram (ERD)
-│
-├── etl/                      # Data processing scripts
-│   ├── clean_and_enrich.py   # Outlier removal and feature engineering
-│   └── init_db.py            # SQLite database initialization
-│
-├── frontend/                 # Interactive web dashboard
-│   ├── index.html            # Dashboard markup and UI controls
-│   ├── css/
-│   │   └── style.css         # Theme and responsive styles
-│   ├── js/
-│   │   └── main.js           # Chart.js, Leaflet map, filters, and QuickSort
-│   └── taxi_zones.geojson    # NYC taxi zone polygon boundaries
-│
-├── codevibe-reports/         # Authorship tracking reports
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project setup and documentation
 
+backend/ Backend service and API codevibe-reports/ Authorship reports for team members data/ Reference data and cleaned trip data database/ Schema definition and ETL loader docs/ Diagrams and documentation etl/ Supporting ETL scripts frontend/ Dashboard user interface
 
+requirements.txt Python dependencies
 **SYSTEM ARCHITECTURE**
 ----------------------
 
