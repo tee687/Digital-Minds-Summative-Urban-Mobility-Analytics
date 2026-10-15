@@ -1,0 +1,577 @@
+{
+  "reportVersion": "1.0",
+  "assignmentId": "assignment-1792064845961-3coth9k",
+  "assignmentName": "Summative_ Urban Mobility Analytics",
+  "generatedAt": 1792065138553,
+  "metrics": {
+    "assignmentId": "assignment-1792064845961-3coth9k",
+    "authorship": {
+      "totalLines": 18,
+      "manualLines": 18,
+      "permittedAILines": 0,
+      "prohibitedAILines": 0,
+      "flaggedAILines": 0,
+      "authorshipPercentage": 0,
+      "prohibitedPercentage": 0
+    },
+    "ownership": {
+      "score": 0,
+      "filesReviewed": 0,
+      "filesUnreviewed": 0,
+      "unreviewedLines": 0,
+      "averageReviewTimeMs": 0
+    },
+    "violations": [
+      {
+        "type": "tracking-gap",
+        "severity": "low",
+        "message": "No tracking activity for 75854 seconds during assignment window",
+        "details": {
+          "startTime": 1791493200000,
+          "endTime": 1791569054433,
+          "durationSeconds": 75854
+        },
+        "firstDetectedAt": 1791569054433,
+        "lastDetectedAt": 1791569054433,
+        "count": 1
+      }
+    ],
+    "rawEvents": [
+      {
+        "id": 1,
+        "timestamp": 1791569054433,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 2,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 3945
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 2,
+        "timestamp": 1791569056529,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2003
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 3,
+        "timestamp": 1791569061863,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2009
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 4,
+        "timestamp": 1791569130328,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 3,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2612
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 5,
+        "timestamp": 1791569158045,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 11,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 7013
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 6,
+        "timestamp": 1791569171715,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 4,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 4866
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 7,
+        "timestamp": 1791569175879,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 0,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2005
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 8,
+        "timestamp": 1791569348785,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 2,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2747
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 9,
+        "timestamp": 1791569351790,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 3,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2569
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 10,
+        "timestamp": 1791569845279,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 0,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 1999
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 11,
+        "timestamp": 1791571420625,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2068
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 12,
+        "timestamp": 1791571707057,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 2,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 3951
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 13,
+        "timestamp": 1791571709486,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2011
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 14,
+        "timestamp": 1791572032010,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 0,
+        "charactersCount": 2,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 5176
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 15,
+        "timestamp": 1791572047959,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 3,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 3744
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 16,
+        "timestamp": 1791572396148,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 3,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2994
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 17,
+        "timestamp": 1791572740424,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 4,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 3485
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 18,
+        "timestamp": 1791572746516,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2187
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 19,
+        "timestamp": 1791572780889,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 1,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2740
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 20,
+        "timestamp": 1791572864448,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 6,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 17433
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      },
+      {
+        "id": 21,
+        "timestamp": 1791572867147,
+        "tool": "claude-code",
+        "eventType": "code-generated",
+        "linesOfCode": 1,
+        "charactersCount": 2,
+        "filePath": "c:/Users/user/Documents/Digital-Minds-_Urban-Mobility-Data-Explorer/database/schema.sql",
+        "language": "sql",
+        "metadata": {
+          "manual": true,
+          "source": "manual-typing",
+          "duration": 2216
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "manual",
+        "detectionMethod": "manual-typing",
+        "confidence": "high"
+      }
+    ],
+    "fileReviews": [],
+    "trackingGaps": [
+      {
+        "startTime": 1791493200000,
+        "endTime": 1791569054433,
+        "durationSeconds": 75854
+      }
+    ]
+  },
+  "policy": {
+    "maxAuthorshipPercentage": 20,
+    "minOwnershipScore": 100,
+    "exemptFileGlobs": [
+      "**/README*",
+      "**/*.md",
+      "**/package.json",
+      "**/package-lock.json",
+      "**/npm-shrinkwrap.json",
+      "**/yarn.lock",
+      "**/pnpm-lock.yaml",
+      "**/poetry.lock",
+      "**/Pipfile.lock",
+      "**/Gemfile.lock",
+      "**/Cargo.lock",
+      "**/composer.lock",
+      "**/go.sum",
+      "**/.gitignore",
+      "**/LICENSE*",
+      "**/tsconfig.json",
+      "**/.eslintrc*",
+      "**/.prettierrc*",
+      "**/node_modules/**",
+      "**/bower_components/**",
+      "**/.npm/**",
+      "**/venv/**",
+      "**/.venv/**",
+      "**/env/**",
+      "**/__pycache__/**",
+      "**/.tox/**",
+      "**/.mypy_cache/**",
+      "**/.pytest_cache/**",
+      "**/.ruff_cache/**",
+      "**/site-packages/**",
+      "**/.git/**",
+      "**/.hg/**",
+      "**/.svn/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/out/**",
+      "**/coverage/**",
+      "**/.nyc_output/**",
+      "**/.next/**",
+      "**/.nuxt/**",
+      "**/target/**",
+      "**/vendor/**",
+      "**/.idea/**",
+      "**/.vs/**",
+      "**/*.pyc",
+      "**/*.pyo",
+      "**/*.min.js",
+      "**/*.bundle.js",
+      "**/*.map",
+      "**/package-lock.json",
+      "**/npm-shrinkwrap.json",
+      "**/yarn.lock",
+      "**/pnpm-lock.yaml",
+      "**/poetry.lock",
+      "**/Pipfile.lock",
+      "**/Gemfile.lock",
+      "**/Cargo.lock",
+      "**/composer.lock",
+      "**/go.sum"
+    ],
+    "prohibitedMethods": [
+      "external-file-change",
+      "git-commit-marker"
+    ],
+    "permittedMethods": [
+      "inline-completion-api"
+    ],
+    "flaggedMethods": [
+      "large-paste",
+      "change-velocity"
+    ],
+    "minLargePasteReviewTimeMs": 5000,
+    "maxTrackingGapSeconds": 1800
+  },
+  "exclusionAudit": [],
+  "studentIdentifier": "t.maulidi@alustudent.com",
+  "repoUrl": "https://github.com/tee687/Digital-Minds-Summative-Urban-Mobility-Analytics.git",
+  "repoHeadCommit": "44f5d0854d5b1ad05ec695a1f902e6f37dda832f",
+  "integrity": {
+    "algorithm": "sha256",
+    "hash": "33a638262c6527ac8ab9caab015166ddefc7c1e6acf020c87e11baa2c84c3d6f"
+  }
+}
