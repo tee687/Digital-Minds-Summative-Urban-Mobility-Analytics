@@ -6,6 +6,9 @@ An enterprise-level full-stack application designed to process, analyze, and vis
 
 **Video Walkthrough link**   :  https://youtu.be/IOzEzABfxhc
 
+**Documentation**
+-------------------
+link:https://drive.google.com/file/d/1gtJRMTOLsw2Uorh6NKAiPRq9NZnLTt9u/view?usp=sharing 
 ## Team Members & Responsibilities
 
 | Name | Role | Core Responsibility |
@@ -81,9 +84,7 @@ Three derived columns are computed during the ETL pipeline:
     trip_duration_min       Trip length in minutes
     avg_speed_mph           Trip distance divided by duration in hours
     fare_per_mile           Fare amount divided by trip distance
-**Documentation**
--------------------
-link:https://drive.google.com/file/d/1gtJRMTOLsw2Uorh6NKAiPRq9NZnLTt9u/view?usp=sharing 
+
 
 Data Source
 -----------
