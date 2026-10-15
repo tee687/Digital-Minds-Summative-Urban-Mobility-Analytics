@@ -28,7 +28,7 @@
         color: #dccfc2
     }
 
-    .conatiner {
+    .container {
         max-width: 1000px;
         margin: 24px;
         padding:0 16px;
@@ -112,7 +112,7 @@
 }
 
 #map {
-  height: 250px;
+  height: 350px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid #ede3d7;
