@@ -23,43 +23,43 @@ SQLite database. A frontend dashboard allows users to explore urban mobility
 patterns such as average fare by hour, trip distance by zone, and pickup
 hotspots across the city.
 
-## Repository Structure
-
-Digital-Minds-_Urban-Mobility-Data-Explorer/
+## Repository StructureDigital-Minds-_Urban-Mobility-Data-Explorer/
 │
 ├── backend/                  # Flask REST API and core services
 │   ├── app.py                # Flask application entry point
 │   ├── algorithm.py          # Custom QuickSort implementation (DSA)
-│   ├── db.py                 # SQLite connection handlers
-│   ├── pipeline.py           # Data ingestion & query pipeline
-│   └── logs/                 # Data cleaning and audit logs
+│   ├── db.py                 # SQLite connection management
+│   ├── pipeline.py           # Ingestion and query pipeline
+│   └── logs/                 # Cleaning audit logs
 │
-├── database/                 # Database scripts & schema
-│   ├── schema.sql            # Normalized DDL schema definitions
-│   └── load_data.py          # Batch database ETL loader
+├── database/                 # Relational schema and ETL scripts
+│   ├── schema.sql            # Table DDL definitions
+│   └── load_data.py          # Batch data loading script
 │
-├── data/                     # Dimensional lookup data
-│   ├── taxi_zone_lookup.csv  # Taxi zone to borough lookup
-│   ├── raw/                  # Raw parquet and shapefile data (git-ignored)
-│   └── processed/            # Cleaned data checkpoints
+├── data/                     # Reference lookup data
+│   ├── taxi_zone_lookup.csv  # Zone-to-borough mapping
+│   ├── raw/                  # Parquet and shapefiles (git-ignored)
+│   └── processed/            # Cleaned data files
 │
-├── docs/                     # Diagrams and technical documentation
+├── docs/                     # Documentation and architecture diagrams
 │   └── erd.png               # Entity-Relationship Diagram (ERD)
 │
-├── etl/                      # ETL transformation scripts
-│   ├── clean_and_enrich.py   # Outlier cleaning and feature engineering
-│   └── init_db.py            # Database initializer
+├── etl/                      # Data processing scripts
+│   ├── clean_and_enrich.py   # Outlier removal and feature engineering
+│   └── init_db.py            # SQLite database initialization
 │
 ├── frontend/                 # Interactive web dashboard
-│   ├── index.html            # Dashboard semantic layout & controls
+│   ├── index.html            # Dashboard markup and UI controls
 │   ├── css/
-│   │   └── style.css         # Custom aesthetic brown/cream theme & responsive layout
+│   │   └── style.css         # Theme and responsive styles
 │   ├── js/
-│   │   └── main.js           # Filtering logic, Chart.js visuals, Leaflet map, QuickSort
-│   └── taxi_zones.geojson    # NYC taxi zone boundary spatial polygons
+│   │   └── main.js           # Chart.js, Leaflet map, filters, and QuickSort
+│   └── taxi_zones.geojson    # NYC taxi zone polygon boundaries
 │
-├── codevibe-reports/         # Authorship & contribution verification logs
+├── codevibe-reports/         # Authorship tracking reports
 ├── requirements.txt          # Python dependencies
+└── README.md                 # Project setup and documentation
+
 
 **SYSTEM ARCHITECTURE**
 ----------------------
