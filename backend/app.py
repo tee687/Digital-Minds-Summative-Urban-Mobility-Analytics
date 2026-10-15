@@ -86,32 +86,29 @@ def top_locations():
     loc_type = request.args.get("type" , "pickup")
     limit = int(request.args.get("limit", 10))
 
-    column = "pickup_location_id" if loc_type == "pickup" else "droppoff_location_id"
+    column = "pickup_location_id" if loc_type == "pickup" else "dropoff_location_id"
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     query = f"""
-     SELECT l.zone_name as zone,
-            b.borough_name as borough,
-            summary.trip_count
+     SELECT z.Zone AS zone,
+            z.Borough AS borough,
+            s.trip_count
     FROM (
            SELECT {column} AS location_id,
                 COUNT(*) AS trip_count  
             FROM trips 
             GROUP BY {column}
             ORDER BY trip_count DESC
-            LIMIT %s 
-)     AS summary
-   JOIN locaions l
-      ON summary.location_id = l.location_id
-    JOIN boroughs b 
-         ON l.borough_id = b.borough_id
-      ORDER BY summary.trip_count DESC;
+            LIMIT ?
+)     AS s
+   JOIN zones z ON s.location_id = z.LocationID
+    ORDER BY s.trip_count DESC;
 """
 
     cursor.execute(query, (limit,))
-    result = cursor.fetchall()
+    result = [dict(row) for row in cursor.fetchall()]
 
     cursor.close()
     conn.close()
@@ -122,27 +119,19 @@ def top_locations():
 def avg_fare_by_borough():
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     cursor.execute("""
-       SELECT b.borough_name,
-                summary.avg_fare,
-                summary.trip_count
-    FROM (
-          SELECT L.borough_id,
+       SELECT z.Borough AS borough_name,
             AVG(t.fare_amount) AS avg_fare,
             COUNT(*) AS trip_count
         FROM trips t
-        JOIN location l 
-             ON t.pickup_location_id = l.location_id
-          GROUP BY l.borough_id
-) AS summary
-    JOIN boroughs b 
-       ON summary.borough_id = b.borough_id
-    ORDER BY summary.avg_fare DESC;
+        JOIN zones z ON  t.pickup_location_id = z.LocationID
+          GROUP BY z.Borough
+        ORDER BY avg_fare DESC;
 """)
 
-    result = cursor.fetchall()
+    result = [dict(row) for row in cursor.fetchall()]
 
     cursor.close()
     conn.close()
@@ -158,7 +147,7 @@ def filter_trips():
     end = request.args.get("end")
     min_fare = request.args.get("min_fare")
     max_fare = request.args.get("max_fare")
-    passengers = request.args.get("passangers")
+    passengers = request.args.get("passengers")
     min_distance = request.args.get("min_distance")
     max_distance = request.args.get("max_distance")
     payment_type_id = request.args.get("payment_type_id")
@@ -176,7 +165,7 @@ def filter_trips():
 
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
 
     query = "SELECT * FROM trips WHERE 1=1"
@@ -186,29 +175,30 @@ def filter_trips():
     # Add filters only if they exist
 
     if start and end:
-        query += "AND pickup_datetime BETWEEN %s and %s"
+        query += " AND pickup_datetime BETWEEN ? and ?"
         params.extend([start, end])
    
     if min_fare and max_fare:
-        query += "And fare_amount BETWEEN %s and %s"
+        query += " And fare_amount BETWEEN ? and ?"
         params.extend([min_fare, max_fare])
     
     if min_distance and max_distance:
-         query += " AND trip_distance BETWEEN %s and %s"
+         query += " AND trip_distance BETWEEN ? and ?"
          params.extend([min_distance, max_distance])
 
     if passengers:
-        query += " AND passenger_count = %s"
+        query += " AND passenger_count = ?"
         params.append(passengers)
 
     if payment_type_id:
-        query += " AND payment_type_id = %s"
+        query += " AND payment_type_id = ?"
         params.append(payment_type_id)
 
     query += f" ORDER BY {sort} LIMIT 100"
 
     cursor.execute(query, params)
-    data = cursor.fetchall()
+    data = [dict(row) for row in cursor.fetchall()]
+
 
     cursor.close()
     conn.close()
@@ -223,31 +213,23 @@ def trips_over_time():
 
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     if group == "day":
-        query = """
-            SELECT
-                DATE(pickup_datetime) as time_label,
-                COUNT(*) as trip_count
-            FROM trips
-            WHERE pickup_datetime BETWEEN %s AND %s
-            GROUP BY DATE(pickup_datetime)
-            ORDER BY time_label
-"""
+        label = "DATE(pickup_datetime)"
     else: 
-        query = """
-              SELECT
-               HOUR(pickup_datetime) as time_label,
-               COUNT(*) as trip_count
-               FROM trips
-               WHERE pickup_datetime BETWEEN %s AND %s
-               GROUP BY HOUR(pickup_datetime)
-               ORDER BY time_label
+        label = "CAST(strftime('%H', pickup_datetime) AS INTEGER)" 
+        
+    query = f"""
+            SELECT {label} AS time_label, COUNT(*) AS trip_count
+            FROM trips
+            WHERE pickup_datetime BETWEEN ? AND ?
+            GROUP BY time_label
+            ORDER BY time_label
 """ 
 
     cursor.execute(query, (start, end))
-    data = cursor.fetchall()
+    data = [dict(row) for row in cursor.fetchall()]
 
     cursor.close()
     conn.close()
@@ -261,21 +243,21 @@ def fare_distribution():
     end = request.args.get("end")
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     query = """
        SELECT
-           FLOOR(fare_amount / 5) * 5 AS fare_range,
+           CAST(fare_amount / 5 AS INTEGER) * 5 AS fare_range,
            COUNT(*) AS trip_count
 
         FROM trips
-        WHERE pickup_datetime BETWEEN %s AND %s
+        WHERE pickup_datetime BETWEEN ? AND ?
         GROUP BY fare_range
         ORDER BY  fare_range
          """
 
     cursor.execute(query, (start, end))
-    data = cursor.fetchall()
+    data = [dict(row) for row in cursor.fetchall()]
 
     cursor.close()
     conn.close()
@@ -290,7 +272,7 @@ def time_metrics():
     metric = request.args.get("metric","trips")
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     if metric == "revenue":
         select_part = "SUM(total_amount) AS value"
@@ -304,12 +286,12 @@ def time_metrics():
             DATE(pickup_datetime) AS trip_date,
                {select_part}
             FROM trips 
-            GROUP BY DATE (pickup_datetime)
+            GROUP BY DATE(pickup_datetime)
             ORDER BY trip_date;
 """
 
-    cursor.excute(query)
-    data = cursor.fetchall()
+    cursor.execute(query)
+    data = [dict(row) for row in cursor.fetchall()]
 
 
     cursor.close()
@@ -322,11 +304,11 @@ def time_metrics():
 def peak_times():
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
-    cursor.excute("""
+    cursor.execute("""
            SELECT
-              HOUR(pickup_datetime) as peak_hour
+              CAST(strftime('%H', pickup_datetime) AS INTEGER)as peak_hour,
               COUNT(*) as trip_count
             FROM trips
             GROUP BY peak_hour
@@ -334,7 +316,8 @@ def peak_times():
             LIMIT 1
 """) 
 
-    peak_hour = cursor.fetchone()
+    row = cursor.fetchone()
+    peak_hour = dict(row) if row else None
 
     # Peak day 
     cursor.execute("""
@@ -348,7 +331,8 @@ def peak_times():
 """) 
 
 
-    peak_day = cursor.fetchone()
+    row = cursor.fetchone()
+    peak_day = dict(row) if row else None 
 
 
     cursor.close()
@@ -365,33 +349,36 @@ def peak_times():
 def busiest_weekday():
 
     conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     cursor.execute("""
            SELECT
-                weekday,
-                AVG(daily_trip_count) AS avg_daily_trips
+                weekday_num, AVG(daily_trip_count) AS avg_daily_trips
                 FROM (
-                    SELECT
-                 DAYOFWEEK(pickup_datetime) AS weekday_num,
-                 DAYNAME(pickup_datetime) AS weekday,
-                 COUNT(*) AS daily_trip_count
-
+                    SELECT strftime('%w', pickup_datetime) AS weekday_num, 
+                           DATE(pickup_datetime) AS trip_date,
+                           COUNT(*) AS daily_trip_count
             FROM trips
-            GROUP BY DATE(pickup_datetime), weekday_num, )
-            AS daily_summary
-            GROUP BY weekday_num, weekday
+            GROUP BY trip_date, weekday_num)
+            GROUP BY weekday_num
             ORDER BY avg_daily_trips DESC
              LIMIT 1;
 """)
+    
 
-    result = cursor.fetchone()
+    row = cursor.fetchone()
 
     cursor.close()
     conn.close()
 
-    return jsonify(result)
+    if row is None:
+        return jsonify(None)
 
+    names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    return jsonify({
+        "weekday": names[int(row["weekday_num"])],
+        "avg_daily_trips": row["avg_daily_trips"],
+    })
 
 @app.route("/api/top-expensive")
 def top_expensive():
